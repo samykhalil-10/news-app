@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef OnMenuItemClicked = void Function(MenuItem item);
 
@@ -22,7 +23,7 @@ class HomeDrawer extends StatelessWidget {
                 height: 110,
                 color: Theme.of(context).primaryColor,
                 child: Text(
-                  'News App!',
+                  AppLocalizations.of(context)!.app_title,
                   style: TextStyle(
                       fontWeight: FontWeight.w700,
                       fontSize: 24,
@@ -49,7 +50,7 @@ class HomeDrawer extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            'Categories',
+                            AppLocalizations.of(context)!.categories,
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w400,
@@ -75,7 +76,7 @@ class HomeDrawer extends StatelessWidget {
                             width: 4,
                           ),
                           Text(
-                            'Settings',
+                            AppLocalizations.of(context)!.setting,
                             style: TextStyle(
                                 fontSize: 24,
                                 fontWeight: FontWeight.w400,

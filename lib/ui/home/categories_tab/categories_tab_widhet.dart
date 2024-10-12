@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/ui/home/categories_tab/category_item.dart';
 import 'package:news_app/ui/widgets/category_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 typedef OnCategoryItemClicked = void Function(CategoryItem catItem);
 
@@ -17,7 +18,7 @@ class CategoriesTabWidget extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            'Pick your category\nof interest',
+            AppLocalizations.of(context)!.pickyourcategoryofinterest,
             style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.w700,
