@@ -1,0 +1,16 @@
+{
+"app_title" : "News",
+"language" : "Language",
+"english" : "English",
+"arabic" : "Arabic",
+"sports" : "Sports",
+"genral" : "Genral",
+"health" : "Health",
+"business" : "Business",
+"entreainment" : "Entreainmnet",
+"science" : "Science",
+"technology" : "Technology",
+"categories" : "Categories",
+"setting" : "Setting"
+"pickyourcategoryofinterest": "Pick your category of interest"
+}
