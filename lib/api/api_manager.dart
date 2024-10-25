@@ -91,4 +91,18 @@ class ApiManager {
     var newsResponse = NewsResponse.fromJson(json);
     return newsResponse;
   }
+
+  static Future<NewsResponse> searchNews(String query) async {
+    var url = Uri.https(baseUrl, '/v2/everything', {
+      'apiKey': apiKey,
+      'q': query,
+    });
+    var response = await http.get(url);
+
+    try {
+      return NewsResponse.fromJson(jsonDecode(response.body));
+    } catch (e) {
+      rethrow;
+    }
+  }
 }

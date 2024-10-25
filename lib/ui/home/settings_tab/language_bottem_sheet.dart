@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:news_app/providers/settings_provider/settings_provider.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../settings_cubit/setting_cubit.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
@@ -13,32 +13,47 @@ class LanguageBottomSheet extends StatefulWidget {
 class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    var provider = Provider.of<SettingProvider>(context);
+    // var provider = Provider.of<SettingProvider>(context);
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-              onTap: () {
-                provider.changeLanguage('en');
+            onTap: () {
+              // provider.changeLanguage('en');
+              context.read<SettingCubit>().changeLanguage('en');
+            },
+            // provider.currentLang == 'en'
+            child: BlocBuilder<SettingCubit, Locale>(
+              builder: (context, state) {
+                return state.languageCode == 'en'
+                    ? buildSelectedThemeItem(
+                        AppLocalizations.of(context)!.english)
+                    : buildUnSelectedThemeItem(
+                        AppLocalizations.of(context)!.english);
               },
-              child: provider.currentLang == 'en'
-                  ? buildSelectedThemeItem(
-                      AppLocalizations.of(context)!.english)
-                  : buildUnSelectedThemeItem(
-                      AppLocalizations.of(context)!.english)),
+            ),
+          ),
           const SizedBox(
             height: 12,
           ),
           InkWell(
-              onTap: () {
-                provider.changeLanguage('ar');
+            onTap: () {
+              // provider.changeLanguage('ar');
+              context.read<SettingCubit>().changeLanguage('ar');
+            },
+            // provider.currentLang == 'ar'
+            child: BlocBuilder<SettingCubit, Locale>(
+              builder: (context, state) {
+                return state.languageCode == 'ar'
+                    ? buildSelectedThemeItem(
+                        AppLocalizations.of(context)!.arabic)
+                    : buildUnSelectedThemeItem(
+                        AppLocalizations.of(context)!.arabic);
               },
-              child: provider.currentLang == 'ar'
-                  ? buildSelectedThemeItem(AppLocalizations.of(context)!.arabic)
-                  : buildUnSelectedThemeItem(
-                      AppLocalizations.of(context)!.arabic)),
+            ),
+          ),
         ],
       ),
     );

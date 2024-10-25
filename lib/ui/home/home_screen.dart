@@ -4,6 +4,8 @@ import 'package:news_app/ui/home/categories_tab/categories_tab_widhet.dart';
 import 'package:news_app/ui/home/categories_tab/category_details/category_details.dart';
 import 'package:news_app/ui/home/categories_tab/category_item.dart';
 import 'package:news_app/ui/home/home_drawer/home_drawer.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:news_app/ui/home/search/search_delgate.dart';
 
 import 'settings_tab/settings_tab_widget.dart';
 
@@ -35,7 +37,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   ImageUtils.getImagePathByName(imageName: 'pattern.png')))),
       child: Scaffold(
           appBar: AppBar(
-            title: Text('News App'),
+            title: Text(AppLocalizations.of(context)!.app_title),
+            actions: [
+              IconButton(
+                onPressed: () => showSearch(
+                    context: context, delegate: NewsSearchDelegate()),
+                icon: const Icon(
+                  Icons.search,
+                  size: 25,
+                ),
+              )
+            ],
           ),
           drawer: HomeDrawer(onMenuItemClicked: onMenuItemClicked),
           body: selectedWidget // catWidget
