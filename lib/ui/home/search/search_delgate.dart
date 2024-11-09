@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:news_app/api/api_manager.dart';
 import 'package:news_app/api/model/news_response/NewsResponse.dart';
 import 'package:news_app/core/theme/my_theme_data.dart';
+import 'package:news_app/ui/widgets/news_item_widget.dart';
 
 class NewsSearchDelegate extends SearchDelegate {
   @override
@@ -50,10 +51,7 @@ class NewsSearchDelegate extends SearchDelegate {
               itemCount: newsResponse.articles!.length,
               itemBuilder: (context, index) {
                 final article = newsResponse.articles![index];
-                return ListTile(
-                  title: Text(article.title ?? 'No Title'),
-                  subtitle: Text(article.description ?? 'No Description'),
-                );
+                return NewsItemWidget(news: article);
               },
             );
           } else {
@@ -94,7 +92,8 @@ class NewsSearchDelegate extends SearchDelegate {
   Widget buildSuggestions(BuildContext context) {
     if (query.isEmpty) {
       return const Center(
-          child: Text('Enter a search term to see suggestions.'));
+        child: Text('Enter a search term to see suggestions.'),
+      );
     }
 
     return FutureBuilder<NewsResponse?>(
@@ -121,10 +120,7 @@ class NewsSearchDelegate extends SearchDelegate {
               itemCount: newsResponse.articles!.length,
               itemBuilder: (context, index) {
                 final article = newsResponse.articles![index];
-                return ListTile(
-                  title: Text(article.title ?? 'No Title'),
-                  subtitle: Text(article.description ?? 'No Description'),
-                );
+                return NewsItemWidget(news: article);
               },
             );
           } else {
